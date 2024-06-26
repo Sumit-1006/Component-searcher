@@ -46,76 +46,21 @@ export default function Component() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="bg-gray-900 text-white border-b">
-        <div className="container flex items-center justify-between h-16 px-4 md:px-6">
-          <div className="flex items-center gap-2">
-            <Link
-              to="#"
-              className="flex items-center gap-2 text-white"
-              prefetch="none"
-            >
-              <MountainIcon className="h-6 w-6" />
-              <span className="font-bold text-xl">UI Components</span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center gap-4 text-lg flex-1 justify-center">
-            <NavigationMenu>
-              <NavigationMenuList className="text-center flex-1">
-                <NavigationMenuItem>
-                  <NavigationMenuLink to="#" className="text-xl">
-                    Navbar
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink to="#" className="text-xl">
-                    Sidebar
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink to="#" className="text-xl">
-                    Dropdown
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink to="#" className="text-xl">
-                    Pagination
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </nav>
-          <div className="flex items-center space-x-4">
-            <Link to="#" className="hover:underline" prefetch="none">
-              Pricing
-            </Link>
-            <Link to="#" className="hover:underline" prefetch="none">
-              Docs
-            </Link>
-            <Button
-              variant="outline"
-              size="icon"
-              className="text-gray-800 border-white"
-              onClick={toggleSidebar}
-            >
-              <FilterIcon className="h-5 w-5" />
-              <span className="sr-only text-gray-800">Filter</span>
-            </Button>
-          </div>
-        </div>
+      <header className="bg-gray-900 text-white border-b flex justify-between items-center px-4 md:px-6 h-16">
+        <Link to="#" className="flex items-center gap-2 text-white" prefetch="none">
+          <MountainIcon className="h-6 w-6" />
+          <span className="font-bold text-xl">UI Components</span>
+        </Link>
+        <Button variant="outline" size="icon" className="text-gray-800 border-white" onClick={toggleSidebar}>
+          <FilterIcon className="h-5 w-5" />
+          <span className="sr-only text-gray-800">Filter</span>
+        </Button>
       </header>
 
       <main className="flex-1">
         <section className="relative bg-muted min-h-screen flex items-center justify-center">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-          >
-            <source
-              src="/video.mp4"
-              type="video/mp4"
-            />
+          <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted>
+            <source src="/video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <div className="relative container flex flex-col md:flex-row items-center justify-center gap-8 text-center">
@@ -124,12 +69,11 @@ export default function Component() {
                 Discover the perfect UI components for your next project
               </h1>
               <p className="text-xl text-gray-300">
-                Browse our collection of beautifully designed and customizable
-                UI components to build your dream application.
+                Browse our collection of beautifully designed and customizable UI components to build your dream application.
               </p>
-              <div className="flex gap-2 justify-center text-gray-800">
+              <div className="flex gap-2 justify-center text-white-800">
                 <Button>Get Started</Button>
-                <Button variant="outline">Explore Components</Button>
+                <Button variant="outline" className="bg-gray-100 text-gray-800">Explore Components</Button>
               </div>
             </div>
           </div>
@@ -145,40 +89,18 @@ export default function Component() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    <img
-                      src="/placeholder.svg"
-                      width={400}
-                      height={300}
-                      alt="Navbar"
-                      className="rounded-lg"
-                    />
-                    <div className="flex justify-end">
-                      <Button variant="outline">Get Code</Button>
-                    </div>
-                  </div>
+                  {/* Removed image and button */}
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-white">Sidebar</CardTitle>
-                  <CardDescription className="text-gray-400">
+                  <CardTitle className="text-gray-100">Sidebar</CardTitle>
+                  <CardDescription className="text-gray-100">
                     Vertical navigation menu with icons and labels.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    <img
-                      src="/placeholder.svg"
-                      width={400}
-                      height={300}
-                      alt="Sidebar"
-                      className="rounded-lg"
-                    />
-                    <div className="flex justify-end">
-                      <Button variant="outline">Get Code</Button>
-                    </div>
-                  </div>
+                  {/* Removed image and button */}
                 </CardContent>
               </Card>
               <Card>
@@ -189,18 +111,7 @@ export default function Component() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    <img
-                      src="/placeholder.svg"
-                      width={400}
-                      height={300}
-                      alt="Dropdown"
-                      className="rounded-lg"
-                    />
-                    <div className="flex justify-end">
-                      <Button variant="outline">Get Code</Button>
-                    </div>
-                  </div>
+                  {/* Removed image and button */}
                 </CardContent>
               </Card>
               <Card>
@@ -211,18 +122,7 @@ export default function Component() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    <img
-                      src="/placeholder.svg"
-                      width={400}
-                      height={300}
-                      alt="Pagination"
-                      className="rounded-lg"
-                    />
-                    <div className="flex justify-end">
-                      <Button variant="outline">Get Code</Button>
-                    </div>
-                  </div>
+                  {/* Removed image and button */}
                 </CardContent>
               </Card>
             </div>
@@ -235,15 +135,9 @@ export default function Component() {
             &copy; 2024 UI Components. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">
-              Terms
-            </Link>
-            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">
-              Privacy
-            </Link>
-            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">
-              Contact
-            </Link>
+            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">Terms</Link>
+            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">Privacy</Link>
+            <Link to="#" className="text-gray-400 hover:underline" prefetch="none">Contact</Link>
           </div>
         </div>
       </footer>
@@ -257,70 +151,53 @@ export default function Component() {
             <span className="sr-only">Close filter</span>
           </button>
         </SheetTrigger>
-        <SheetContent side="right" className="bg-background p-6">
+        <SheetContent side="right" className="bg-background p-6 text-white">
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Filter by Library</h2>
             <Accordion type="single" collapsible>
               <AccordionItem value="material-ui">
-                <AccordionTrigger className="text-base">Material UI</AccordionTrigger>
+                <AccordionTrigger className="text-base text-white">Material UI</AccordionTrigger>
                 <AccordionContent>
                   <div className="grid gap-2">
-                    <Label                       className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="material-ui-components" /> Components
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="material-ui-hooks" /> Hooks
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="material-ui-themes" /> Themes
                     </Label>
                   </div>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="ant-design">
-                <AccordionTrigger className="text-base">Ant Design</AccordionTrigger>
+                <AccordionTrigger className="text-base text-white" >Ant Design</AccordionTrigger>
                 <AccordionContent>
                   <div className="grid gap-2">
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="ant-design-components" /> Components
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="ant-design-hooks" /> Hooks
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="ant-design-themes" /> Themes
                     </Label>
                   </div>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="tailwind-css">
-                <AccordionTrigger className="text-base">Tailwind CSS</AccordionTrigger>
+                <AccordionTrigger className="text-base text-white">Tailwind CSS</AccordionTrigger>
                 <AccordionContent>
                   <div className="grid gap-2">
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="tailwind-css-components" /> Components
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="tailwind-css-utilities" /> Utilities
                     </Label>
-                    <Label
-                      className="flex items-center gap-2 font-normal"
-                    >
+                    <Label className="flex items-center gap-2 font-normal">
                       <Checkbox id="tailwind-css-themes" /> Themes
                     </Label>
                   </div>
@@ -343,7 +220,7 @@ function FilterIcon(props) {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="white"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -391,4 +268,3 @@ function XIcon(props) {
     </svg>
   );
 }
-
