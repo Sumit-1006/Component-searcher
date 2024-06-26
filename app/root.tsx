@@ -7,6 +7,17 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
+import styles from "./tailwind.css"
+import { LinksFunction } from "@remix-run/node";
+
+const cssBundleHref = process.env.CSS_BUNDLE_HREF || undefined;
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+]
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
