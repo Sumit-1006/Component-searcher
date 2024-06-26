@@ -16,14 +16,7 @@ import {
   NavigationMenuLink,
 } from "~/components/ui/navigation-menu";
 
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuCheckboxItem,
-} from "~/components/ui/dropdown-menu";
+
 import { Button } from "~/components/ui/button";
 import {
   Card,
