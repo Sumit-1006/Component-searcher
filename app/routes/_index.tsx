@@ -113,7 +113,7 @@ export default function Component() {
             muted
           >
             <source
-              src="public/Y2meta.app-Coding _ Programming _ Background Video FHD-(720p).mp4"
+              src="public\video.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
