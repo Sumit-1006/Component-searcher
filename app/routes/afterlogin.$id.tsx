@@ -82,7 +82,7 @@ export default function Component() {
               </div>
               <div>
                 <Label htmlFor="code">Code</Label>
-                <Input id="code" name="code" type="text" placeholder="Enter your code snippet here" className="bg-gray-800 text-white" />
+                <textarea id="code" name="code" placeholder="Enter your code snippet here" className="bg-gray-800 text-white h-40 resize-none w-full" />
               </div>
               <div className="flex justify-end">
                 <Button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300">
