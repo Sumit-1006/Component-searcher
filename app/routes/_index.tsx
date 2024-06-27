@@ -95,6 +95,7 @@ export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigationBars = useLoaderData();
   const [showCode, setShowCode] = useState<any>({});
+  const [selectedLibraries, setSelectedLibraries] = useState<string[]>([]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -105,6 +106,25 @@ export default function Component() {
       ...prevState,
       [id]: !prevState[id],
     }));
+  };
+
+  const toggleLibrary = (library: string) => {
+    setSelectedLibraries((prevSelected) =>
+      prevSelected.includes(library)
+        ? prevSelected.filter((item) => item !== library)
+        : [...prevSelected, library]
+    );
+  };
+
+  const filterByLibrary = (item: any) => {
+    if (selectedLibraries.length === 0) {
+      return true; // Show all if no filter selected
+    }
+    return selectedLibraries.includes(item.library);
+  };
+
+  const applyFilter = () => {
+    // Logic to apply filter if needed (if filtering is not automatic)
   };
 
   return (
@@ -163,42 +183,44 @@ export default function Component() {
             <div className="grid grid-cols-1 gap-6">
               {navigationBars.length > 0 ? (
                 navigationBars.map((item: any) => (
-                  <div
-                    key={item.id}
-                    className="flex flex-col sm:flex-row bg-gray-800 p-4 rounded-lg"
-                  >
-                    <div className="sm:w-1/3">
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          src={item.image_url}
-                          alt={item.title}
-                          className="w-full h-auto rounded"
-                        />
-                      </a>
+                  filterByLibrary(item) && (
+                    <div
+                      key={item.id}
+                      className="flex flex-col sm:flex-row bg-gray-800 p-4 rounded-lg"
+                    >
+                      <div className="sm:w-1/3">
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src={item.image_url}
+                            alt={item.title}
+                            className="w-full h-auto rounded"
+                          />
+                        </a>
+                      </div>
+                      <div className="sm:w-2/3 sm:pl-4 mt-4 sm:mt-0">
+                        <h2 className="text-white text-2xl font-bold">
+                          {item.title}
+                        </h2>
+                        <p className="text-gray-400">{item.library}</p>
+                        <Button
+                          variant="outline"
+                          className="mt-2 text-white border-white hover:bg-white hover:text-gray-800"
+                          onClick={() => handleShowCodeClick(item.id)}
+                        >
+                          {showCode[item.id] ? "Hide Code" : "Show Code"}
+                        </Button>
+                        {showCode[item.id] && (
+                          <pre className="bg-gray-700 text-gray-200 p-4 rounded mt-2 whitespace-pre-wrap break-all">
+                            {item.code}
+                          </pre>
+                        )}
+                      </div>
                     </div>
-                    <div className="sm:w-2/3 sm:pl-4 mt-4 sm:mt-0">
-                      <h2 className="text-white text-2xl font-bold">
-                        {item.title}
-                      </h2>
-                      <p className="text-gray-400">{item.library}</p>
-                      <Button
-                        variant="outline"
-                        className="mt-2 text-white border-white hover:bg-white hover:text-gray-800"
-                        onClick={() => handleShowCodeClick(item.id)}
-                      >
-                        {showCode[item.id] ? "Hide Code" : "Show Code"}
-                      </Button>
-                      {showCode[item.id] && (
-                        <pre className="bg-gray-700 text-gray-200 p-4 rounded mt-2 whitespace-pre-wrap break-all">
-                          {item.code}
-                        </pre>
-                      )}
-                    </div>
-                  </div>
+                  )
                 ))
               ) : (
                 <p className="text-white">No navigation bars found.</p>
@@ -240,7 +262,7 @@ export default function Component() {
       <Sheet
         open={isSidebarOpen}
         onOpenChange={setIsSidebarOpen}
-        className="w-full max-w-[400px] md:max-w-[500px]"
+        className="w-full max-w-[500px]"
       >
         <SheetTrigger asChild>
           <button
@@ -255,42 +277,6 @@ export default function Component() {
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-bold">Filter by Library</h2>
             <Accordion type="single" collapsible>
-              <AccordionItem value="material-ui">
-                <AccordionTrigger className="text-base text-white">
-                  Material UI
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="grid gap-2">
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="material-ui-components" /> Components
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="material-ui-hooks" /> Hooks
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="material-ui-themes" /> Themes
-                    </Label>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="ant-design">
-                <AccordionTrigger className="text-base text-white">
-                  Ant Design
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="grid gap-2">
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="ant-design-components" /> Components
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="ant-design-hooks" /> Hooks
-                    </Label>
-                    <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="ant-design-themes" /> Themes
-                    </Label>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
               <AccordionItem value="tailwind-css">
                 <AccordionTrigger className="text-base text-white">
                   Tailwind CSS
@@ -298,18 +284,57 @@ export default function Component() {
                 <AccordionContent>
                   <div className="grid gap-2">
                     <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="tailwind-css-components" /> Components
+                      <Checkbox
+                        id="tailwind-css-components"
+                        checked={selectedLibraries.includes("tailwind-css")}
+                        onChange={() => toggleLibrary("tailwind-css")}
+                      />{" "}
+                      Components
                     </Label>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="bootstrap">
+                <AccordionTrigger className="text-base text-white">
+                  Bootstrap
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-2">
                     <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="tailwind-css-utilities" /> Utilities
+                      <Checkbox
+                        id="bootstrap-components"
+                        checked={selectedLibraries.includes("bootstrap")}
+                        onChange={() => toggleLibrary("bootstrap")}
+                      />{" "}
+                      Components
                     </Label>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="next-ui">
+                <AccordionTrigger className="text-base text-white">
+                  Next UI
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-2">
                     <Label className="flex items-center gap-2 font-normal">
-                      <Checkbox id="tailwind-css-themes" /> Themes
+                      <Checkbox
+                        id="next-ui-components"
+                        checked={selectedLibraries.includes("next-ui")}
+                        onChange={() => toggleLibrary("next-ui")}
+                      />{" "}
+                      Components
                     </Label>
                   </div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            <Button
+              className="bg-accent text-accent-foreground hover:bg-accent-hover"
+              onClick={applyFilter}
+            >
+              Apply
+            </Button>
           </div>
         </SheetContent>
       </Sheet>
