@@ -216,30 +216,32 @@ export default function Component() {
                           alt={item.title}
                           className="w-full h-auto rounded"
                         />
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-2 text-white border-white hover:bg-white hover:text-gray-800"
-                        >
-                          <Button variant="outline" size="icon">
-                            <ArrowRightIcon className="h-5 w-5" />
-                            <span className="sr-only">Go to URL</span>
-                          </Button>
-                        </a>
                       </div>
                       <div className="sm:w-2/3 sm:pl-4 mt-4 sm:mt-0">
                         <h2 className="text-white text-2xl font-bold">
                           {item.title}
                         </h2>
                         <p className="text-gray-400">{item.library}</p>
-                        <Button
-                          variant="outline"
-                          className="mt-2 text-white border-white hover:bg-white hover:text-gray-800"
-                          onClick={() => handleShowCodeClick(item.id)}
-                        >
-                          {showCode[item.id] ? "Hide Code" : "Show Code"}
-                        </Button>
+                        <div className="flex items-center gap-2 mt-2">
+                          <Button
+                            variant="outline"
+                            className="text-white border-white hover:bg-white hover:text-gray-800"
+                            onClick={() => handleShowCodeClick(item.id)}
+                          >
+                            {showCode[item.id] ? "Hide Code" : "Show Code"}
+                          </Button>
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white border-white hover:bg-white hover:text-gray-800"
+                          >
+                            <Button variant="outline" size="icon">
+                              <ArrowRightIcon className="h-5 w-5" />
+                              <span className="sr-only">Go to URL</span>
+                            </Button>
+                          </a>
+                        </div>
                         {showCode[item.id] && (
                           <pre className="bg-gray-700 text-gray-200 p-4 rounded mt-2 whitespace-pre-wrap break-all">
                             {item.code}
