@@ -145,6 +145,7 @@ export default function Component() {
 
   const applyFilter = () => {
     // Logic to apply filter if needed (if filtering is not automatic)
+    // This function can trigger any additional logic needed to update UI based on selected libraries
   };
 
   return (
@@ -202,8 +203,9 @@ export default function Component() {
           <div className="container">
             <div className="grid grid-cols-1 gap-6">
               {navigationBars.length > 0 ? (
-                navigationBars.map((item: any) => (
-                  filterByLibrary(item) && (
+                navigationBars
+                  .filter(filterByLibrary) // Apply filter here
+                  .map((item: any) => (
                     <div
                       key={item.id}
                       className="flex flex-col sm:flex-row bg-gray-800 p-4 rounded-lg"
@@ -245,8 +247,7 @@ export default function Component() {
                         )}
                       </div>
                     </div>
-                  )
-                ))
+                  ))
               ) : (
                 <p className="text-white">No navigation bars found.</p>
               )}
@@ -311,8 +312,8 @@ export default function Component() {
                     <Label className="flex items-center gap-2 font-normal">
                       <Checkbox
                         id="tailwind-css-components"
-                        checked={selectedLibraries.includes("tailwind-css")}
-                        onCheckedChange={() => toggleLibrary("tailwind-css")}
+                        checked={selectedLibraries.includes("Tailwind CSS")}
+                        onCheckedChange={() => toggleLibrary("Tailwind CSS")}
                       />{" "}
                       Components
                     </Label>
@@ -328,8 +329,8 @@ export default function Component() {
                     <Label className="flex items-center gap-2 font-normal">
                       <Checkbox
                         id="bootstrap-components"
-                        checked={selectedLibraries.includes("bootstrap")}
-                        onCheckedChange={() => toggleLibrary("bootstrap")}
+                        checked={selectedLibraries.includes("Bootstrap")}
+                        onCheckedChange={() => toggleLibrary("Bootstrap")}
                       />{" "}
                       Components
                     </Label>
@@ -345,8 +346,8 @@ export default function Component() {
                     <Label className="flex items-center gap-2 font-normal">
                       <Checkbox
                         id="next-ui-components"
-                        checked={selectedLibraries.includes("next-ui")}
-                        onCheckedChange={() => toggleLibrary("next-ui")}
+                        checked={selectedLibraries.includes("Next UI")}
+                        onCheckedChange={() => toggleLibrary("Next UI")}
                       />{" "}
                       Components
                     </Label>
@@ -366,4 +367,3 @@ export default function Component() {
     </div>
   );
 }
-
