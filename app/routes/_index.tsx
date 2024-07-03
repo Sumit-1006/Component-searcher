@@ -91,6 +91,26 @@ function XIcon(props: any) {
   );
 }
 
+function ArrowRightIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  );
+}
+
 export default function Component() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigationBars = useLoaderData();
@@ -189,16 +209,21 @@ export default function Component() {
                       className="flex flex-col sm:flex-row bg-gray-800 p-4 rounded-lg"
                     >
                       <div className="sm:w-1/3">
+                        <img
+                          src={item.image_url}
+                          alt={item.title}
+                          className="w-full h-auto rounded"
+                        />
                         <a
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="mt-2 text-white border-white hover:bg-white hover:text-gray-800"
                         >
-                          <img
-                            src={item.image_url}
-                            alt={item.title}
-                            className="w-full h-auto rounded"
-                          />
+                          <Button variant="outline" size="icon">
+                            <ArrowRightIcon className="h-5 w-5" />
+                            <span className="sr-only">Go to URL</span>
+                          </Button>
                         </a>
                       </div>
                       <div className="sm:w-2/3 sm:pl-4 mt-4 sm:mt-0">
@@ -287,7 +312,7 @@ export default function Component() {
                       <Checkbox
                         id="tailwind-css-components"
                         checked={selectedLibraries.includes("tailwind-css")}
-                        onChange={() => toggleLibrary("tailwind-css")}
+                        onCheckedChange={() => toggleLibrary("tailwind-css")}
                       />{" "}
                       Components
                     </Label>
@@ -304,7 +329,7 @@ export default function Component() {
                       <Checkbox
                         id="bootstrap-components"
                         checked={selectedLibraries.includes("bootstrap")}
-                        onChange={() => toggleLibrary("bootstrap")}
+                        onCheckedChange={() => toggleLibrary("bootstrap")}
                       />{" "}
                       Components
                     </Label>
@@ -321,7 +346,7 @@ export default function Component() {
                       <Checkbox
                         id="next-ui-components"
                         checked={selectedLibraries.includes("next-ui")}
-                        onChange={() => toggleLibrary("next-ui")}
+                        onCheckedChange={() => toggleLibrary("next-ui")}
                       />{" "}
                       Components
                     </Label>
@@ -341,3 +366,4 @@ export default function Component() {
     </div>
   );
 }
+
